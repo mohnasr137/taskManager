@@ -1,7 +1,8 @@
 //packages
 const express = require("express");
 const mongoose = require("mongoose");
-//imported
+
+//routers
 const tasks = require("./routers/tasks");
 const auth = require("./routers/auth");
 
@@ -12,17 +13,8 @@ const url = process.env.API_URL;
 
 //middlewares
 app.use(express.json());
-
-//routers
 app.use(`${url}/auth`, auth);
-//post signup
-//post signin
 app.use(`${url}/tasks`, tasks);
-//get
-//post
-//get single
-//update single
-//delete single
 
 //connection
 mongoose
