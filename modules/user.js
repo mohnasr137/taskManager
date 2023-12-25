@@ -1,4 +1,5 @@
 const mongoose = require("mongoose");
+const tasksSchema = require("./tasks");
 
 const userSchema = mongoose.Schema({
   name: {
@@ -15,33 +16,11 @@ const userSchema = mongoose.Schema({
     require: true,
     type: String,
   },
-  type: {
-    type: String,
-    default: "user",
+  isAdmin: {
+    type: Boolean,
+    default: false,
   },
-  tasks: [
-    {
-      name: {
-        require: true,
-        type: String,
-      },
-      start: {
-        require: true,
-        type: String,
-      },
-      end: {
-        require: true,
-        type: String,
-      },
-      done: {
-        require: true,
-        type: Boolean,
-      },
-      description: {
-        type: String,
-      },
-    },
-  ],
+  tasks: [tasksSchema],
 });
 
 const User = mongoose.model("User", userSchema);

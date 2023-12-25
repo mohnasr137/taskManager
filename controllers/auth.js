@@ -45,7 +45,7 @@ const signIn = async (req, res) => {
         .json({ message: "the user with this email does not exist!." });
     }
     const isMatch = await brcyptjs.compare(password, user.password);
-    if(!isMatch){
+    if (!isMatch) {
       return res.status(400).json({ message: "Incorrect password." });
     }
     res.json(user);
