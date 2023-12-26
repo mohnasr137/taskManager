@@ -20,6 +20,9 @@ const tasksSchema = mongoose.Schema({
   des: {
     type: String,
   },
+  degree: {
+    type: Number,
+  },
 });
 
 module.exports = tasksSchema;

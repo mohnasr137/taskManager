@@ -8,13 +8,16 @@ const auth = require("./routers/auth");
 
 //starter
 const app = express();
-const port = process.env.port || 3000;
+const port = process.env.PORT;
 const url = process.env.API_URL;
 
 //middlewares
 app.use(express.json());
 app.use(`${url}/auth`, auth);
 app.use(`${url}/tasks`, tasks);
+app.use("/", (req, res) => {
+  res.send("hi, from Task Manager");
+});
 
 //connection
 mongoose
@@ -26,5 +29,5 @@ mongoose
     console.log(err);
     console.log(process.env.CONNECTION_STRING);
   });
-  
+
 app.listen(port, console.log(`server is listen in port:${port}`));
