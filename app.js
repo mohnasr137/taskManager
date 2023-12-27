@@ -1,6 +1,7 @@
 //packages
 const express = require("express");
 const mongoose = require("mongoose");
+const cors  =require("cors")
 
 //routers
 const tasks = require("./routers/tasks");
@@ -12,6 +13,7 @@ const port = process.env.PORT;
 const url = process.env.API_URL;
 
 //middlewares
+app.use(cors());
 app.use(express.json());
 app.use(`${url}/auth`, auth);
 app.use(`${url}/tasks`, tasks);
