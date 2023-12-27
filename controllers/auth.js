@@ -5,7 +5,7 @@ const signUp = async (req, res) => {
   try {
     let tasks = [];
     tasks = req.body.tasks;
-    const { email, password } = req.body;
+    const { email, password, isAdmin } = req.body;
     let name = req.body.name;
     name = name.split("-");
     name = `${name[0]} ${name[1]}`;
@@ -39,6 +39,7 @@ const signUp = async (req, res) => {
       name,
       email,
       password: hashedPassword,
+      isAdmin,
       tasks,
     });
     user = await user.save();
