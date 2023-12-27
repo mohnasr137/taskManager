@@ -2,7 +2,7 @@ const User = require("../models/user");
 
 const getUser = async (req, res) => {
   try {
-    const email = req.body;
+    const email = req.body.email;
     const user = await User.findOne({ email });
     if (!user) {
       return res
