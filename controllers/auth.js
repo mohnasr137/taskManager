@@ -4,9 +4,11 @@ const User = require("../models/user");
 const signUp = async (req, res) => {
   try {
     let tasks = [];
-    const { name, email, password } = req.body;
-    tasks = req.body;
-    console.log(tasks);
+    tasks = req.body.tasks;
+    const { email, password } = req.body;
+    let name = req.body.name;
+    name = name.split("-");
+    name = `${name[0]} ${name[1]}`;
     const re =
       /^(([^<>()[\]\.,;:\s@\"]+(\.[^<>()[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i;
     const isMatch = email.match(re);
@@ -37,6 +39,7 @@ const signUp = async (req, res) => {
       name,
       email,
       password: hashedPassword,
+      tasks,
     });
     user = await user.save();
     return res.status(201).json({ success: true });
