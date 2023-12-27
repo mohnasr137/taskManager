@@ -1,8 +1,8 @@
 const express = require("express");
-const { getUserTasks } = require("../controllers/tasks");
+const { getUser } = require("../controllers/tasks");
 const router = express.Router();
 
 //controllers
-router.get("/user/:id", getUserTasks);
+router.get("/getUser", getUser);
 
 module.exports = router;
