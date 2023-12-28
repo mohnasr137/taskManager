@@ -3,6 +3,6 @@ const { getUser } = require("../controllers/tasks");
 const router = express.Router();
 
 //controllers
-router.get("/getUser", getUser);
+router.post("/getUser", getUser);
 
 module.exports = router;

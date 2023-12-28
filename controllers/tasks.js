@@ -5,14 +5,15 @@ const getUser = async (req, res) => {
     const email = req.body.email;
     const user = await User.findOne({ email });
     if (!user) {
-      return res
-        .status(500)
-        .json({ success: false, message: "user with this email not found" });
+      return res.json({
+        success: false,
+        message: "user with this email not found",
+      });
     }
     const { name, tasks } = user;
-    return res.status(200).json({ success: true, name, tasks });
+    return res.json({ success: true, name, tasks });
   } catch (err) {
-    return res.status(500).json({ success: false, message: err });
+    return res.json({ success: false, message: err });
   }
 };
 
