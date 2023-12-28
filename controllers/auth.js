@@ -13,23 +13,23 @@ const signUp = async (req, res) => {
       /^(([^<>()[\]\.,;:\s@\"]+(\.[^<>()[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i;
     const isMatch = email.match(re);
     if (name.length < 3) {
-      return res
-        .status(400)
-        .json({ success: false, message: "please enter a valid name" });
+      return res.json({ success: false, message: "please enter a valid name" });
     }
     if (!isMatch) {
-      return res
-        .status(400)
-        .json({ success: false, message: "please enter a valid email" });
+      return res.json({
+        success: false,
+        message: "please enter a valid email",
+      });
     }
     if (password.length < 6) {
-      return res
-        .status(400)
-        .json({ success: false, message: "please enter a long password" });
+      return res.json({
+        success: false,
+        message: "please enter a long password",
+      });
     }
     const existingUser = await User.findOne({ email });
     if (existingUser) {
-      return res.status(400).json({
+      return res.json({
         success: false,
         message: "the user with same email is already exist!.",
       });
@@ -43,9 +43,9 @@ const signUp = async (req, res) => {
       tasks,
     });
     user = await user.save();
-    return res.status(201).json({ success: true });
+    return res.json({ success: true });
   } catch (err) {
-    return res.status(500).json({ success: false, message: err });
+    return res.json({ success: false, message: err });
   }
 };
 

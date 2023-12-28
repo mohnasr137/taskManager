@@ -18,7 +18,7 @@ app.options("*", cors());
 app.use(express.json());
 app.use(`${url}/auth`, auth);
 app.use(`${url}/tasks`, tasks);
-app.use("/", (req, res) => {
+app.post(`${url}/aut`, (req, res) => {
   res.send("hi, from Task Manager");
 });
 
